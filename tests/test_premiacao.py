@@ -1,23 +1,15 @@
-from selenium import webdriver
-
-
 URL_BASE = "https://marceloterencianiifpr.github.io/premiacao-copa/"
 
 def test_ambiente():
     assert True
 
 
-def test_deve_exibir_titulo_da_pagina():
+def test_deve_exibir_titulo_da_pagina(driver_visivel):
     # Arrange
-    driver = webdriver.Chrome()
     titulo_esperado = "Premiação da Copa do Mundo"
 
+    # Act
+    driver_visivel.get(URL_BASE)
 
-    try:
-        # Act
-        driver.get(URL_BASE)
-
-        # Assert
-        assert driver.title == titulo_esperado
-    finally:
-        driver.quit()
+    # Assert
+    assert driver_visivel.title == titulo_esperado
